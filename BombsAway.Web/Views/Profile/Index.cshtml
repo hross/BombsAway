@@ -1,0 +1,36 @@
+﻿@model List<Profile>
+
+@{ ViewBag.Title = "All Profiles"; }
+
+<div>
+    <h2>Current Profiles</h2>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Player</th>
+                        <th>Color</th>
+                    </tr>
+                </thead>
+                @foreach (var profile in Model)
+                {
+                    <tr>
+                        <td>@profile.Name</td>
+                        <td style="background-color:@profile.Color.FindColor().HexString();"></td>
+                        <td>@Html.ActionLink("Edit", "Edit", "Profile", new { Id = profile.Id }, new {})</td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        @Html.ActionLink("Add Profile", "Edit", "Profile", new { }, new { @class="btn btn-primary", role="button" })
+    </div>
+</div>

@@ -1,0 +1,44 @@
+﻿@model List<GamePlayerProfile>
+
+@{var game = 0;}
+
+@if (Model.Count > 0) { 
+
+    foreach (var group in Model.GroupBy(g => g.GameId).OrderBy(g => g.First().CreatedOnUTC))
+    {
+        game++;
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Game #@game Rankings (@group.First().CreatedOnUTC.ToString())
+            </div>
+
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Player</th>
+                        <th>Color</th>
+                        <th>Games Played</th>
+                        <th>Wins</th>
+                        <th>Trophies</th>
+                    </tr>
+                </thead>
+
+                @{var gp = group.OrderByDescending(x => x.Wins).ToList();}
+
+                @for (int i = 0; i < gp.Count; i++)
+                {
+                    <tr>
+                        <td>@(i + 1)</td>
+                        <td>@gp[i].Name</td>
+                        <td style="background-color:@gp[i].Color.FindColor().HexString();"></td>
+                        <td>@gp[i].Games</td>
+                        <td>@gp[i].Wins</td>
+                        <td>@gp[i].Trophies</td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+    }
+}

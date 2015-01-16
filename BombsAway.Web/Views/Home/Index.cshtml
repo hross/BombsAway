@@ -1,0 +1,17 @@
+﻿@model OverviewStatsModel
+
+@{ ViewBag.Title = "Bombs Away!"; }
+
+<div>
+    <h1>Bombs Away</h1>
+    <p class="lead">Keeping track of bomberman scores 1 trophy at a time...</p>
+</div>
+
+<div class="row">
+    <div class="col-md-8">
+        @Html.Partial("_ProfileStats", Model.Profiles)
+    </div>
+    <div class="col-md-4">
+       @Html.Partial("_GameStats", Model.GamePlayers)
+    </div>
+</div>

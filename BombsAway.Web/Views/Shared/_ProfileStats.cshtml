@@ -1,0 +1,33 @@
+﻿@model List<Profile>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        Overall Rankings
+    </div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>Player</th>
+                <th>Color</th>
+                <th>Games Played</th>
+                <th>Wins</th>
+                <th>Trophies</th>
+            </tr>
+        </thead>
+
+        @{var profiles = Model.OrderByDescending(p => p.Wins).ToList();}
+
+        @for (int i = 0; i < profiles.Count; i++)
+        {
+            <tr>
+                <td>@(i + 1)</td>
+                <td>@profiles[i].Name</td>
+                <td style="background-color:@profiles[i].Color.FindColor().HexString();"></td>
+                <td>@profiles[i].Games</td>
+                <td>@profiles[i].Wins</td>
+                <td>@profiles[i].Trophies</td>
+            </tr>
+        }
+    </table>
+</div>

@@ -1,0 +1,40 @@
+﻿@using System.Collections
+@using BombsAway.Common.Statistics
+@model IList<Game>
+@{
+    
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>Games</h1>
+    <p class="lead">The History of All Games Played</p>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-striped">
+            <thead>
+                <tr><th>Date</th><th>Color</th><th>Winner</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>@DateTime.Now</td>
+                    <td><div class="color limegreen"></div></td>
+                    <td>George</td>
+                </tr>
+                <tr>
+                    <td>@DateTime.Now.Subtract(new TimeSpan(0,10,0))</td>
+                    <td><div class="color orange"></div></td>
+                    <td>Ross</td>
+                </tr>
+                <tr>
+                    <td>@DateTime.Now.Subtract(new TimeSpan(0, 20, 0))</td>
+                    <td><div class="color babyblue"></div></td>
+                    <td>Rob</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>

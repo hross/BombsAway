@@ -1,0 +1,35 @@
+﻿@model ProfileModel
+
+@{ 
+    var title = Model.Profile.Id > 0 ? "Edit Profile" : "Add Profile";
+    ViewBag.Title = title;
+}
+
+<div>
+    <h2>@title</h2>
+</div>
+
+@using (Html.BeginForm("Edit", "Profile", new { Id = Model.Profile.Id }, FormMethod.Post, new { role = "form" }))
+{
+    @Html.HiddenFor(p => p.Profile.Id)
+    
+    <div class="form-group">
+        @Html.LabelFor(p => p.Profile.Name)
+        @Html.TextBoxFor(p => p.Profile.Name, new { @class = "form-control", placeholder = "Type your name" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(p => p.Profile.PlayerColorId)
+        @Html.DropDownListFor(p => p.Profile.PlayerColorId, Model.ColorList, new { @class = "form-control hex" })
+    </div>
+    
+    <div style="display:none;">
+        @{var dict = Model.HexValues();}
+        @foreach (var key in dict.Keys)
+        {
+            <div class="data-hex" data-id="@key" data-color="@dict[key]"></div>
+        }
+    </div>
+
+    <button type="submit" class="btn btn-default">Save</button>
+}
